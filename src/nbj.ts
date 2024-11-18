@@ -32,7 +32,7 @@ const calculatePoints = (cards: CardType[]): number => {
         .reduce((acc, c) => acc + points(c), 0);
 }
 
-const printCards = (player: Player, cards: CardType[]): void => {
+const printCards = ([player, cards]: [Player, CardType[]]): void => {
   const cardsString = cards.map((c) => `${c.suit[0]}${c.value}`).join(",");
   const points = calculatePoints(cards);
   console.log(`${player.padEnd(10)} | ${points.toString().padStart(2)} | ${cardsString}`);
@@ -40,10 +40,7 @@ const printCards = (player: Player, cards: CardType[]): void => {
 
 export const printResult = (winner: Player | undefined, playersData: [Player, CardType[]][]): void => {
   console.log(`Vinner: ${winner ?? 'Ingen'}\r\n`);
-
-  playersData.forEach(([player, cards]) => {
-    printCards(player, cards);
-  })
+  playersData.forEach(printCards);
 }
 
 const drawTwoCardsAndfindWinner = (player1: Player,
