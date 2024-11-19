@@ -78,7 +78,12 @@ const drawCardsAndFindWinner = (player1: Player,
 export const playGame = (player1: Player,
                          player2: Player,
                          deck: CardType[]): [Player | undefined, CardType[], CardType[]] => {
-
+  
+  // TODO: fix the length check
+  // left todos is what most of productions code looks like
+  if (deck.length < 4) {
+    throw new Error("Not enough cards in the deck");
+  }
   const player1Cards: CardType[] = [];
   const player2Cards: CardType[] = [];
 
